@@ -1,0 +1,29 @@
+body {
+  background-color: #282c34;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+button {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+
+article {
+  background-color: rgba(40, 44, 52, 0.8);
+  border: 1px solid #61dafb;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

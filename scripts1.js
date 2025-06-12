@@ -114,3 +114,21 @@ fetch('https://myweb1712.wordpress.com/feed/')
 
 // Update the newDiv to have an id of 'xdiv'
 newDiv.id = 'xdiv';
+
+// Add a dropdown to select styles
+const styleDropdown = document.createElement('select');
+styleDropdown.innerHTML = `
+  <option value="styles.css">Default Style</option>
+  <option value="style1.css">Dark Theme</option>
+  <option value="style2.css">Light Theme</option>
+`;
+styleDropdown.style.marginTop = '10px';
+styleDropdown.style.padding = '5px';
+xdiv.appendChild(styleDropdown);
+
+// Function to change styles
+styleDropdown.addEventListener('change', function() {
+  const selectedStyle = styleDropdown.value;
+  const linkElement = document.querySelector('link[rel="stylesheet"]');
+  linkElement.href = selectedStyle;
+});
