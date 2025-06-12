@@ -62,7 +62,7 @@ function removeExistingCustomStyles() {
 
 // Initialize the UI components
 function initializeUI() {
-  createStyledDiv();
+  // createStyledDiv();
   const toggleButton = createToggleButton();
   const formDiv = createFormDiv();
 
