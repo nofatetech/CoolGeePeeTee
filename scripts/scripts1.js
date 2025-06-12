@@ -2,39 +2,39 @@ console.log('Hello 1!');
 
 // Function to create and style a new div
 function createStyledDiv() {
-  const newDiv = document.createElement('div');
-  newDiv.textContent = 'Hello, this is a dynamically inserted div!<br>my settings<br>save/load<br>list of links, inspirations';
-  newDiv.style.backgroundColor = 'var(--background-color)';
-  newDiv.style.color = 'var(--text-color)';
-  newDiv.style.padding = '20px';
-  newDiv.style.margin = '17px';
-  newDiv.style.border = '3px solid var(--article-border-color)';
-  newDiv.style.borderRadius = '3px';
-  newDiv.style.boxShadow = '0 4px 8px var(--article-shadow-color)';
+const newDiv = document.createElement('div');
+newDiv.textContent = 'Hello, this is a dynamically inserted div!<br>my settings<br>save/load<br>list of links, inspirations';
+newDiv.style.backgroundColor = 'var(--background-color)';
+newDiv.style.color = 'var(--text-color)';
+newDiv.style.padding = '20px';
+newDiv.style.margin = '17px';
+newDiv.style.border = '3px solid var(--article-border-color)';
+newDiv.style.borderRadius = '3px';
+newDiv.style.boxShadow = '0 4px 8px var(--article-shadow-color)';
   document.body.appendChild(newDiv);
 }
 
 // Function to create and style a toggle button
 function createToggleButton() {
-  const toggleButton = document.createElement('button');
-  toggleButton.id = 'xtogglebutton';
-  toggleButton.textContent = 'Change Style';
-  toggleButton.style.position = 'fixed';
-  toggleButton.style.bottom = '20px';
-  toggleButton.style.right = '20px';
-  document.body.appendChild(toggleButton);
+const toggleButton = document.createElement('button');
+toggleButton.id = 'xtogglebutton';
+toggleButton.textContent = 'Switch Theme!';
+toggleButton.style.position = 'fixed';
+toggleButton.style.bottom = '20px';
+toggleButton.style.right = '20px';
+document.body.appendChild(toggleButton);
   return toggleButton;
 }
 
 // Function to create and style a form div
 function createFormDiv() {
-  const formDiv = document.createElement('div');
-  formDiv.id = 'xformdiv';
+const formDiv = document.createElement('div');
+formDiv.id = 'xformdiv';
   formDiv.style = '';
-  formDiv.style.position = 'fixed';
-  formDiv.style.bottom = '60px';
-  formDiv.style.right = '20px';
-  formDiv.style.display = 'none';
+formDiv.style.position = 'fixed';
+formDiv.style.bottom = '60px';
+formDiv.style.right = '20px';
+formDiv.style.display = 'none';
 
   document.body.appendChild(formDiv);
   return formDiv;
@@ -64,7 +64,7 @@ function createThemeLinks(form) {
     link.style.textDecoration = 'none';
     link.addEventListener('click', function(event) {
       event.preventDefault();
-      handleFormSubmission(theme);
+      loadThemeCss(theme);
     });
     listItem.appendChild(link);
     themeList.appendChild(listItem);
@@ -73,24 +73,20 @@ function createThemeLinks(form) {
   form.appendChild(themeList);
 }
 
-// Modify handleFormSubmission to read from a local CSS file or apply custom styles
-function handleFormSubmission(theme) {
+// Function to load theme CSS into the textarea (does NOT apply it)
+function loadThemeCss(theme) {
   if (theme) {
     fetch(chrome.runtime.getURL(theme.url))
       .then(response => response.text())
       .then(cssContent => {
-        removeExistingCustomStyles(); // Clear existing styles
-        const styleElement = document.createElement('style');
-        styleElement.textContent = cssContent;
-        styleElement.setAttribute('data-foo', 'bar');
-        styleElement.setAttribute('data-custom', 'true');
-        document.head.appendChild(styleElement);
+        const textarea = document.getElementById('xtextarea');
+        textarea.value = cssContent;
       })
       .catch(error => console.error('Error loading theme:', error));
   }
 }
 
-// Function to handle custom style submission
+// Modify handleCustomStyleSubmission to apply styles from the textarea
 function handleCustomStyleSubmission(form) {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -116,10 +112,10 @@ function initializeUI() {
   const toggleButton = createToggleButton();
   const formDiv = createFormDiv();
 
-  // Toggle form visibility
+// Toggle form visibility
   toggleButton.addEventListener('click', function () {
-    formDiv.style.display = formDiv.style.display === 'none' ? 'block' : 'none';
-  });
+  formDiv.style.display = formDiv.style.display === 'none' ? 'block' : 'none';
+});
 
   // Create and append the form
   const form = document.createElement('form');
