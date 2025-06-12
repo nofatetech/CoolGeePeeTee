@@ -12,63 +12,61 @@
   --button-border-color: #ff00ff;
 }
 
-body {
-  background-image: url('https://images.unsplash.com/photo-1476639902824-154a3cabb6b6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #333;
-  font-family: 'Georgia', serif;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-body::before {
-  display: none;
-}
-
-textarea, .prose {
-  font-family: var(--font-family-code);
-  font-size: 1.1em;
-  color: #444;
-}
-
-article {
-  background-color: #ffffff !important;
-  border: none;
-  box-shadow: none;
-  padding: 40px;
-  margin: 40px auto;
-  max-width: 800px;
-  border-radius: 8px;
-}
-
-button {
-  background-color: #e0e0e0;
-  color: #666;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #d0d0d0;
-}
-
-/* Additional styles for layout and responsiveness */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+#xformdiv {
   padding: 20px;
+  background-color: var(--background-color);
+  border: 2px solid var(--article-border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--article-shadow-color);
+
 }
 
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-  }
+#xformdiv #xapplybutton {
+  background-color: #00ff00;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+#xtogglebutton {
+  padding: 10px 20px;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+
+#xform textarea {
+  width: 100%;
+  height: 100px;
+  /* background-color: #000; */
+  /* color: #0f0; */
+  font-family: monospace;
+  border: 1px solid #0f0;
+  padding: 10px;
+  caret-color: #0f0;
+
+}
+
+
+#xformdiv h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3em;
+  text-align: center;
+  color: #0ff;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff,
+    0 0 80px #00f,
+    0 0 90px #00f;
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, #00fff7, #7700ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

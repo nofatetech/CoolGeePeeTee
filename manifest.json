@@ -5,12 +5,27 @@
   "description": "Customize the look of ChatGPT",
   "content_scripts": [
     {
-      "matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
-      "css": ["styles.css"],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
       "js": [
-        "scripts1.js"
+        "scripts/htmx2.0.4.min.js",
+        "scripts/jquery-3.7.1.min.js",
+        "scripts/scripts1.js"
       ]
     }
   ],
-  "permissions": ["activeTab"]
+  "permissions": [
+    "activeTab"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["views/xdiv.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
