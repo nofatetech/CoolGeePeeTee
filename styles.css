@@ -13,27 +13,19 @@
 }
 
 body {
-  background-image: url('https://images.unsplash.com/photo-1622793982988-02f826a73f8f?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-image: url('https://images.unsplash.com/photo-1476639902824-154a3cabb6b6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: var(--font-family-main);
-  color: var(--text-color);
-  /* color: #e0e0e0 !important; */
-  /* font-size: 33px; */
+  color: #333;
+  font-family: 'Georgia', serif;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 0, 150, 0.3); /* 80s style pink overlay */
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 
 textarea, .prose {
@@ -43,38 +35,27 @@ textarea, .prose {
 }
 
 article {
-  border: 4px solid var(--article-border-color);
-  box-shadow: 0 0 20px var(--article-shadow-color);
-  border-radius: 16px;
-  padding: 24px;
-  margin: 24px auto;
-  background: var(--article-background-gradient);
+  background-color: #ffffff !important;
+  border: none;
+  box-shadow: none;
+  padding: 40px;
+  margin: 40px auto;
   max-width: 800px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-article:hover {
-  /* transform: rotate(-5deg) scale(1.05); */
-  transform: rotate(-2deg) scale(1.0);
-  box-shadow: 0 0 30px rgba(255, 255, 0, 0.7);
+  border-radius: 8px;
 }
 
 button {
-  background: linear-gradient(135deg, #00ff00, #00cc00);
-  color: #000;
-  border: 2px solid #00cc00;
-  padding: 10px 20px;
-  border-radius: 32px;
+  background-color: #e0e0e0;
+  color: #666;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: var(--font-family-main);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #00cc00, #009900);
-  transform: scale(1.05);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background-color: #d0d0d0;
 }
 
 /* Additional styles for layout and responsiveness */
