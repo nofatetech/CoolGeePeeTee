@@ -24,7 +24,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["views/xdiv.html"],
+      "resources": ["views/xdiv.html", "styles_80s.css", "styles_reading.css"],
       "matches": ["<all_urls>"]
     }
   ]

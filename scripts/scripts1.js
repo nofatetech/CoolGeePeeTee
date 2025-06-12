@@ -40,8 +40,58 @@ function createFormDiv() {
   return formDiv;
 }
 
-// Function to handle form submission
-function handleFormSubmission(form) {
+// Sample JSON variable with themes
+const themes = [
+  { slug: '80s', name: '80s Style', url: 'styles_80s.css', description: 'A vibrant 80s theme.' },
+  { slug: 'Reading', name: 'Reading', url: 'styles_reading.css', description: 'For reading.' }
+  // { slug: 'cyberpunk', name: 'Cyberpunk', url: 'styles_cyberpunk.css', description: 'A futuristic cyberpunk theme.' }
+];
+
+// Function to create theme links
+function createThemeLinks(form) {
+  const themeList = document.createElement('ul');
+  themeList.style.listStyleType = 'none';
+  themeList.style.padding = '0';
+
+  themes.forEach(theme => {
+    const listItem = document.createElement('li');
+    const link = document.createElement('a');
+    link.textContent = `${theme.name}: ${theme.description}`;
+    link.href = '#';
+    link.style.display = 'block';
+    link.style.marginBottom = '5px';
+    link.style.color = '#007bff';
+    link.style.textDecoration = 'none';
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      handleFormSubmission(theme);
+    });
+    listItem.appendChild(link);
+    themeList.appendChild(listItem);
+  });
+
+  form.appendChild(themeList);
+}
+
+// Modify handleFormSubmission to read from a local CSS file or apply custom styles
+function handleFormSubmission(theme) {
+  if (theme) {
+    fetch(chrome.runtime.getURL(theme.url))
+      .then(response => response.text())
+      .then(cssContent => {
+        removeExistingCustomStyles(); // Clear existing styles
+        const styleElement = document.createElement('style');
+        styleElement.textContent = cssContent;
+        styleElement.setAttribute('data-foo', 'bar');
+        styleElement.setAttribute('data-custom', 'true');
+        document.head.appendChild(styleElement);
+      })
+      .catch(error => console.error('Error loading theme:', error));
+  }
+}
+
+// Function to handle custom style submission
+function handleCustomStyleSubmission(form) {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     removeExistingCustomStyles(); // Clear existing styles
@@ -74,6 +124,9 @@ function initializeUI() {
   // Create and append the form
   const form = document.createElement('form');
   form.id = 'xform';
+
+  // Add theme links
+  createThemeLinks(form);
 
   // Add h2 element
   const heading = document.createElement('h2');
@@ -121,7 +174,7 @@ function initializeUI() {
   form.appendChild(moreThemesDiv);
 
   formDiv.appendChild(form);
-  handleFormSubmission(form);
+  handleCustomStyleSubmission(form);
 }
 
 // Run the initialization
