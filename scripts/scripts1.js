@@ -30,10 +30,12 @@ function createToggleButton() {
 function createFormDiv() {
   const formDiv = document.createElement('div');
   formDiv.id = 'xformdiv';
+  formDiv.style = '';
   formDiv.style.position = 'fixed';
   formDiv.style.bottom = '60px';
   formDiv.style.right = '20px';
   formDiv.style.display = 'none';
+
   document.body.appendChild(formDiv);
   return formDiv;
 }
@@ -87,15 +89,36 @@ function initializeUI() {
   const applyButton = document.createElement('button');
   applyButton.textContent = 'APPLY!!';
   applyButton.id = 'xapplybutton';
+  applyButton.style.width = '100%';
+  applyButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+  applyButton.style.marginTop = '10px';
   form.appendChild(applyButton);
 
-  // Add link for more themes
+  // Move 'Get More Themes' link below the apply button
   const moreThemesLink = document.createElement('a');
   moreThemesLink.textContent = 'Get More Themes';
   moreThemesLink.href = '//coolgeepeetee.com'; // Add the actual link here
   const moreThemesDiv = document.createElement('div');
   moreThemesDiv.appendChild(moreThemesLink);
-  formDiv.appendChild(moreThemesDiv);
+
+  // Style the link
+  moreThemesLink.style.display = 'block';
+  moreThemesLink.style.marginTop = '10px';
+  moreThemesLink.style.textAlign = 'center';
+  moreThemesLink.style.color = '#007bff';
+  moreThemesLink.style.textDecoration = 'none';
+  moreThemesLink.style.fontWeight = 'bold';
+  moreThemesLink.style.transition = 'color 0.3s';
+
+  // Add hover effect
+  moreThemesLink.addEventListener('mouseover', function() {
+    moreThemesLink.style.color = '#0056b3';
+  });
+  moreThemesLink.addEventListener('mouseout', function() {
+    moreThemesLink.style.color = '#007bff';
+  });
+
+  form.appendChild(moreThemesDiv);
 
   formDiv.appendChild(form);
   handleFormSubmission(form);
