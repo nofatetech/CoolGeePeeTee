@@ -24,7 +24,16 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["views/xdiv.html", "styles_80s.css", "styles_reading.css"],
+      "resources": [
+        "styles_cyberpunk.css",
+        "styles_nature.css",
+        "styles_minimalist.css",
+        "styles_terminal.css",
+        "styles_space.css",
+        "styles_vintage.css",
+        "styles_gaming.css",
+        "styles_90s.css"
+      ],
       "matches": ["<all_urls>"]
     }
   ]

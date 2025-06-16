@@ -1,0 +1,215 @@
+:root {
+  --background-color: #ffffff;
+  --font-family-main: 'Inter', sans-serif;
+  --font-family-code: 'JetBrains Mono', monospace;
+  --text-color: #2d3436;
+  --article-border-color: #dfe6e9;
+  --article-shadow-color: rgba(0, 0, 0, 0.05);
+  --article-background-gradient: linear-gradient(135deg, #ffffff, #f8f9fa);
+  --button-background-color: #2d3436;
+  --button-hover-background-color: #636e72;
+  --button-text-color: #ffffff;
+  --button-border-color: #2d3436;
+  --accent-color: #0984e3;
+}
+
+@keyframes subtleFade {
+  0% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes smoothElevate {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px var(--article-shadow-color);
+  }
+  100% {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--article-shadow-color);
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--font-family-main);
+  color: var(--text-color);
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(248, 249, 250, 0.95) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+textarea, .prose {
+  font-family: var(--font-family-code);
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--article-border-color);
+  border-radius: 8px;
+  padding: 16px;
+  line-height: 1.6;
+  transition: all 0.2s ease;
+}
+
+textarea:focus, .prose:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(9, 132, 227, 0.1);
+}
+
+article {
+  border: 1px solid var(--article-border-color);
+  box-shadow: 0 2px 4px var(--article-shadow-color);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 32px auto;
+  background: var(--article-background-gradient);
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+article:hover {
+  animation: smoothElevate 0.3s forwards;
+}
+
+button {
+  background: var(--button-background-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-family-main);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+
+button:hover {
+  background: var(--button-hover-background-color);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Additional styles for layout and responsiveness */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+/* Minimalist heading styles */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--article-border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--button-hover-background-color);
+}
+
+/* Link styles */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--button-hover-background-color);
+}
+
+/* List styles */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code block styles */
+pre, code {
+  font-family: var(--font-family-code);
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--article-border-color);
+}
+
+/* Blockquote styles */
+blockquote {
+  border-left: 4px solid var(--accent-color);
+  margin: 1.5rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  color: var(--button-hover-background-color);
+  font-style: italic;
+}

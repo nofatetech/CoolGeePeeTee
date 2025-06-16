@@ -1,0 +1,272 @@
+:root {
+  --background-color: #0a0a1a;
+  --font-family-main: 'Space Grotesk', sans-serif;
+  --font-family-code: 'JetBrains Mono', monospace;
+  --text-color: #e0e0ff;
+  --article-border-color: #4a4a8a;
+  --article-shadow-color: rgba(74, 74, 138, 0.3);
+  --article-background-gradient: linear-gradient(135deg, rgba(10, 10, 26, 0.9), rgba(20, 20, 40, 0.9));
+  --button-background-color: #4a4a8a;
+  --button-hover-background-color: #6a6aaa;
+  --button-text-color: #ffffff;
+  --button-border-color: #6a6aaa;
+  --star-color: #ffffff;
+  --nebula-color-1: #ff6b6b;
+  --nebula-color-2: #4ecdc4;
+  --nebula-color-3: #45b7d1;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes nebulaPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--font-family-main);
+  color: var(--text-color);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(2px 2px at 20px 30px, var(--star-color) 50%, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, var(--star-color) 50%, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 50px 160px, var(--star-color) 50%, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 90px 40px, var(--star-color) 50%, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 130px 80px, var(--star-color) 50%, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, var(--star-color) 50%, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: twinkle 4s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    var(--nebula-color-1) 0%,
+    var(--nebula-color-2) 25%,
+    var(--nebula-color-3) 50%,
+    var(--nebula-color-2) 75%,
+    var(--nebula-color-1) 100%
+  );
+  background-size: 400% 400%;
+  opacity: 0.1;
+  animation: nebulaPulse 15s ease infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+textarea, .prose {
+  font-family: var(--font-family-code);
+  font-size: 1.1em;
+  color: var(--text-color);
+  background-color: rgba(10, 10, 26, 0.8);
+  border: 1px solid var(--article-border-color);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 0 20px var(--article-shadow-color);
+}
+
+textarea:focus, .prose:focus {
+  outline: none;
+  border-color: var(--button-hover-background-color);
+  box-shadow: 0 0 30px var(--article-shadow-color);
+}
+
+article {
+  border: 1px solid var(--article-border-color);
+  box-shadow: 0 0 20px var(--article-shadow-color);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px auto;
+  background: var(--article-background-gradient);
+  max-width: 800px;
+  position: relative;
+  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+}
+
+article::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(74, 74, 138, 0.1) 50%,
+    transparent 100%
+  );
+  animation: nebulaPulse 10s ease infinite;
+}
+
+button {
+  background: var(--button-background-color);
+  color: var(--button-text-color);
+  border: 1px solid var(--button-border-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-family-main);
+  font-weight: 500;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background: var(--button-hover-background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--article-shadow-color);
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+
+button:hover::after {
+  left: 100%;
+}
+
+/* Additional styles for layout and responsiveness */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+/* Space-themed heading styles */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  text-shadow: 0 0 10px var(--article-shadow-color);
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, var(--nebula-color-1), var(--nebula-color-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--article-border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--button-hover-background-color);
+}
+
+/* Code block styles */
+pre, code {
+  font-family: var(--font-family-code);
+  background-color: rgba(10, 10, 26, 0.9);
+  border: 1px solid var(--article-border-color);
+  border-radius: 4px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+/* List styles */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+li::before {
+  content: '✦';
+  position: absolute;
+  left: -1.5rem;
+  color: var(--nebula-color-2);
+}
+
+/* Blockquote styles */
+blockquote {
+  border-left: 4px solid var(--nebula-color-2);
+  margin: 1.5rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  font-style: italic;
+  background: rgba(74, 74, 138, 0.1);
+  border-radius: 0 8px 8px 0;
+}
