@@ -1,59 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "GPT Extension",
-  "version": "1.0",
-  "description": "A Chrome extension for GPT",
+  "name": "CoolGeePeeTee",
+  "version": "0.3",
+  "description": "Customize the look of your favorite AI chats, and more!",
   "permissions": [
     "storage",
     "activeTab",
     "scripting"
   ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    }
-  },
-  "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
+  "action": {},
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
       "js": [
-        "scripts/gsap/gsap.min.js",
-        "scripts/gsap/ScrollTrigger.min.js",
-        "scripts/gsap/ScrollSmoother.min.js",
-        "scripts/gsap/TextPlugin.min.js",
-        "scripts/gsap/EasePack.min.js",
-        "scripts/gsap/CustomEase.min.js",
-        "scripts/gsap/CustomBounce.min.js",
-        "scripts/gsap/CustomWiggle.min.js",
-        "scripts/content.js",
+        "scripts/jquery-3.7.1.min.js",
+        "scripts/htmx2.0.4.min.js",
         "scripts/scripts1.js"
       ],
       "css": [
-        "styles_80s.css",
-        "styles_90s.css",
-        "styles_minimalist.css",
-        "styles_cyberpunk.css",
-        "styles_gaming.css",
-        "styles_nature.css",
-        "styles_reading.css",
-        "styles_space.css",
-        "styles_terminal.css",
-        "styles_vintage.css"
+        "styles.css"
       ]
     }
   ],
   "web_accessible_resources": [
     {
       "resources": [
-        "scripts/gsap/*",
         "styles_*.css"
       ],
       "matches": ["<all_urls>"]
