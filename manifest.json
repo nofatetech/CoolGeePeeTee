@@ -16,6 +16,32 @@
         "https://chatgpt.com/*"
       ],
       "js": [
+        "scripts/gsap/gsap.min.js",
+        "scripts/gsap/Draggable.min.js",
+        "scripts/gsap/DrawSVGPlugin.min.js",
+        "scripts/gsap/EaselPlugin.min.js",
+        "scripts/gsap/Flip.min.js",
+        "scripts/gsap/GSDevTools.min.js",
+        "scripts/gsap/InertiaPlugin.min.js",
+        "scripts/gsap/MotionPathHelper.min.js",
+        "scripts/gsap/MotionPathPlugin.min.js",
+        "scripts/gsap/MorphSVGPlugin.min.js",
+        "scripts/gsap/Observer.min.js",
+        "scripts/gsap/Physics2DPlugin.min.js",
+        "scripts/gsap/PhysicsPropsPlugin.min.js",
+        "scripts/gsap/PixiPlugin.min.js",
+        "scripts/gsap/ScrambleTextPlugin.min.js",
+        "scripts/gsap/ScrollTrigger.min.js",
+        "scripts/gsap/ScrollSmoother.min.js",
+        "scripts/gsap/ScrollToPlugin.min.js",
+        "scripts/gsap/SplitText.min.js",
+        "scripts/gsap/TextPlugin.min.js",
+        "scripts/gsap/EasePack.min.js",
+        "scripts/gsap/CustomEase.min.js",
+        "scripts/gsap/CustomBounce.min.js",
+        "scripts/gsap/CustomWiggle.min.js",
+        "scripts/gsap/register-plugins.js",
+        "scripts/gsap/example.js",
         "scripts/jquery-3.7.1.min.js",
         "scripts/htmx2.0.4.min.js",
         "scripts/scripts1.js"
@@ -28,7 +54,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "styles_*.css"
+        "styles_*.css",
+        "scripts/gsap/*"
       ],
       "matches": ["<all_urls>"]
     }
