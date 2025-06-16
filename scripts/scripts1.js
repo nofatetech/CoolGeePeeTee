@@ -4,15 +4,15 @@ console.log('Hello 1!');
 
 // Function to create and style a new div
 function createStyledDiv() {
-const newDiv = document.createElement('div');
-newDiv.textContent = 'Hello, this is a dynamically inserted div!<br>my settings<br>save/load<br>list of links, inspirations';
-newDiv.style.backgroundColor = 'var(--background-color)';
-newDiv.style.color = 'var(--text-color)';
-newDiv.style.padding = '20px';
-newDiv.style.margin = '17px';
-newDiv.style.border = '3px solid var(--article-border-color)';
-newDiv.style.borderRadius = '3px';
-newDiv.style.boxShadow = '0 4px 8px var(--article-shadow-color)';
+  const newDiv = document.createElement('div');
+  newDiv.textContent = 'Hello, this is a dynamically inserted div!<br>my settings<br>save/load<br>list of links, inspirations';
+  newDiv.style.backgroundColor = 'var(--background-color)';
+  newDiv.style.color = 'var(--text-color)';
+  newDiv.style.padding = '20px';
+  newDiv.style.margin = '17px';
+  newDiv.style.border = '3px solid var(--article-border-color)';
+  newDiv.style.borderRadius = '3px';
+  newDiv.style.boxShadow = '0 4px 8px var(--article-shadow-color)';
   document.body.appendChild(newDiv);
 }
 
@@ -20,7 +20,7 @@ newDiv.style.boxShadow = '0 4px 8px var(--article-shadow-color)';
 function createToggleButton() {
   const toggleButton = document.createElement('button');
   toggleButton.id = 'xtogglebutton';
-  toggleButton.textContent = 'Style It! 🎨✨💫';
+  toggleButton.textContent = '🎨✨💫 Style It!';
   toggleButton.style.position = 'fixed';
   toggleButton.style.bottom = '20px';
   toggleButton.style.right = '20px';
@@ -49,7 +49,7 @@ function createToggleButton() {
     opacity: 1,
     scale: 1,
     rotation: 0,
-    ease: "elastic.out(1, 0.5)",
+    ease: "elastic.out(333, 0.5)",
     delay: 0.5
   });
 
@@ -93,9 +93,9 @@ function createToggleButton() {
     attentionAnimation.pause();
     gsap.to(toggleButton, {
       duration: 0.4,
-      scale: 1.2,
-      rotation: 10,
-      boxShadow: '0 0 40px rgba(138, 43, 226, 0.8)',
+      scale: 7.7,
+      rotation: 11,
+      boxShadow: '0 0 42px rgba(138, 43, 226, 0.8)',
       background: 'linear-gradient(45deg, #2b0b3f, #8a2be2)',
       ease: "elastic.out(1, 0.5)"
     });
@@ -140,13 +140,13 @@ function createToggleButton() {
 
 // Function to create and style a form div
 function createFormDiv() {
-const formDiv = document.createElement('div');
-formDiv.id = 'xformdiv';
+  const formDiv = document.createElement('div');
+  formDiv.id = 'xformdiv';
   formDiv.style = '';
-formDiv.style.position = 'fixed';
-formDiv.style.bottom = '60px';
-formDiv.style.right = '20px';
-formDiv.style.display = 'none';
+  formDiv.style.position = 'fixed';
+  formDiv.style.bottom = '60px';
+  formDiv.style.right = '20px';
+  formDiv.style.display = 'none';
 
   document.body.appendChild(formDiv);
   return formDiv;
@@ -196,14 +196,14 @@ function createThemeLinks(form) {
     link.style.transition = 'background-color 0.2s';
 
     // Add hover effect
-    link.addEventListener('mouseover', function() {
+    link.addEventListener('mouseover', function () {
       link.style.backgroundColor = '#f0f0f0';
     });
-    link.addEventListener('mouseout', function() {
+    link.addEventListener('mouseout', function () {
       link.style.backgroundColor = 'transparent';
     });
 
-    link.addEventListener('click', function(event) {
+    link.addEventListener('click', function (event) {
       event.preventDefault();
       loadThemeCss(theme);
     });
@@ -405,10 +405,10 @@ function initializeUI() {
   const toggleButton = createToggleButton();
   const formDiv = createFormDiv();
 
-// Toggle form visibility
+  // Toggle form visibility
   toggleButton.addEventListener('click', function () {
-  formDiv.style.display = formDiv.style.display === 'none' ? 'block' : 'none';
-});
+    formDiv.style.display = formDiv.style.display === 'none' ? 'block' : 'none';
+  });
 
   // Create and append the form
   const form = document.createElement('form');
@@ -453,10 +453,10 @@ function initializeUI() {
   moreThemesLink.style.transition = 'color 0.3s';
 
   // Add hover effect
-  moreThemesLink.addEventListener('mouseover', function() {
+  moreThemesLink.addEventListener('mouseover', function () {
     moreThemesLink.style.color = '#0056b3';
   });
-  moreThemesLink.addEventListener('mouseout', function() {
+  moreThemesLink.addEventListener('mouseout', function () {
     moreThemesLink.style.color = '#007bff';
   });
 
