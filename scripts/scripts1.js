@@ -42,28 +42,33 @@ formDiv.style.display = 'none';
 
 // Sample JSON variable with themes
 const themes = [
-  { slug: '80s', name: '80s Style', url: 'styles_80s.css', description: 'A vibrant 80s theme.' },
-  { slug: 'Reading', name: 'Reading', url: 'styles_reading.css', description: 'For reading.' },
-  { slug: 'cyberpunk', name: 'Cyberpunk', url: 'styles_cyberpunk.css', description: 'A neon-drenched cyberpunk theme with retro-futuristic aesthetics.' },
-  { slug: 'nature', name: 'Nature', url: 'styles_nature.css', description: 'A calming nature-inspired theme with organic colors and textures.' },
-  { slug: 'minimalist', name: 'Minimalist', url: 'styles_minimalist.css', description: 'A clean, modern theme with plenty of white space and subtle interactions.' },
-  { slug: 'terminal', name: 'Retro Terminal', url: 'styles_terminal.css', description: 'A classic terminal theme with green-on-black and command-line aesthetics.' },
-  { slug: 'space', name: 'Space', url: 'styles_space.css', description: 'A cosmic theme with star fields, nebula effects, and floating elements.' },
-  { slug: 'vintage', name: 'Vintage', url: 'styles_vintage.css', description: 'A nostalgic vintage theme with sepia tones and paper textures.' },
-  {
-    slug: 'gaming',
-    name: 'Gaming',
-    url: 'styles_gaming.css',
-    description: 'A retro gaming theme with pixel art elements and arcade-style UI.'
-  },
-  { slug: '90s', name: '90s Web', url: 'styles_90s.css', description: 'A nostalgic 90s web theme with Geocities-inspired elements and classic internet aesthetics.' }
+  { slug: '80s', name: '80s Style 🎸', url: 'styles_80s.css', description: 'A vibrant 80s theme with neon colors and retro vibes 🎵💿🎨' },
+  { slug: 'reading', name: 'Reading 📚', url: 'styles_reading.css', description: 'A comfortable reading theme with optimized typography and eye-friendly colors 👓📖✨' },
+  { slug: 'cyberpunk', name: 'Cyberpunk 🌆', url: 'styles_cyberpunk.css', description: 'A neon-drenched cyberpunk theme with retro-futuristic aesthetics ⚡️💻🌃' },
+  { slug: 'nature', name: 'Nature 🌿', url: 'styles_nature.css', description: 'A calming nature-inspired theme with organic colors and textures 🍃🌱🌳' },
+  { slug: 'minimalist', name: 'Minimalist ⚪️', url: 'styles_minimalist.css', description: 'A clean, modern theme with plenty of white space and subtle interactions ✨🎯💭' },
+  { slug: 'terminal', name: 'Retro Terminal 💻', url: 'styles_terminal.css', description: 'A classic terminal theme with green-on-black and command-line aesthetics ⌨️🖥️📟' },
+  { slug: 'space', name: 'Space 🚀', url: 'styles_space.css', description: 'A cosmic theme with star fields, nebula effects, and floating elements 🌌✨🌠' },
+  { slug: 'vintage', name: 'Vintage 📜', url: 'styles_vintage.css', description: 'A nostalgic vintage theme with sepia tones and paper textures 🕰️📚🎞️' },
+  { slug: 'gaming', name: 'Gaming 🎮', url: 'styles_gaming.css', description: 'A retro gaming theme with pixel art elements and arcade-style UI 🕹️👾🎯' },
+  { slug: '90s', name: '90s Web 🌐', url: 'styles_90s.css', description: 'A nostalgic 90s web theme with Geocities-inspired elements and classic internet aesthetics 💫🌟💻' }
 ];
 
 // Function to create theme links
 function createThemeLinks(form) {
+  const scrollableDiv = document.createElement('div');
+  scrollableDiv.style.maxHeight = '300px';
+  scrollableDiv.style.overflowY = 'auto';
+  scrollableDiv.style.marginBottom = '15px';
+  scrollableDiv.style.padding = '10px';
+  scrollableDiv.style.border = '1px solid #ddd';
+  scrollableDiv.style.borderRadius = '5px';
+  scrollableDiv.style.backgroundColor = '#f9f9f9';
+
   const themeList = document.createElement('ul');
   themeList.style.listStyleType = 'none';
   themeList.style.padding = '0';
+  themeList.style.margin = '0';
 
   themes.forEach(theme => {
     const listItem = document.createElement('li');
@@ -71,9 +76,21 @@ function createThemeLinks(form) {
     link.textContent = `${theme.name}: ${theme.description}`;
     link.href = '#';
     link.style.display = 'block';
-    link.style.marginBottom = '5px';
+    link.style.marginBottom = '10px';
+    link.style.padding = '8px';
     link.style.color = '#007bff';
     link.style.textDecoration = 'none';
+    link.style.borderRadius = '4px';
+    link.style.transition = 'background-color 0.2s';
+
+    // Add hover effect
+    link.addEventListener('mouseover', function() {
+      link.style.backgroundColor = '#f0f0f0';
+    });
+    link.addEventListener('mouseout', function() {
+      link.style.backgroundColor = 'transparent';
+    });
+
     link.addEventListener('click', function(event) {
       event.preventDefault();
       loadThemeCss(theme);
@@ -82,7 +99,8 @@ function createThemeLinks(form) {
     themeList.appendChild(listItem);
   });
 
-  form.appendChild(themeList);
+  scrollableDiv.appendChild(themeList);
+  form.appendChild(scrollableDiv);
 }
 
 // Function to load theme CSS into the textarea (does NOT apply it)
@@ -158,7 +176,7 @@ function initializeUI() {
   // Move 'Get More Themes' link below the apply button
   const moreThemesLink = document.createElement('a');
   moreThemesLink.textContent = 'Get More Themes';
-  moreThemesLink.href = '//coolgeepeetee.com'; // Add the actual link here
+  moreThemesLink.href = '//nofate.net/coolgeepeetee'; // Add the actual link here
   const moreThemesDiv = document.createElement('div');
   moreThemesDiv.appendChild(moreThemesLink);
 
