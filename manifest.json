@@ -51,8 +51,6 @@
         "scripts/gsap/CustomEase.min.js",
         "scripts/gsap/CustomBounce.min.js",
         "scripts/gsap/CustomWiggle.min.js",
-        "scripts/gsap/register-plugins.js",
-        "scripts/gsap/example.js",
         "scripts/jquery-3.7.1.min.js",
         "scripts/htmx2.0.4.min.js",
         "scripts/scripts1.js"

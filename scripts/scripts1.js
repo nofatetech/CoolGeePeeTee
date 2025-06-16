@@ -1,3 +1,5 @@
+
+
 console.log('Hello 1!');
 
 // Function to create and style a new div
@@ -246,6 +248,157 @@ function removeExistingCustomStyles() {
   existingStyleElements.forEach(element => element.remove());
 }
 
+// Function to create and attach cool meta div to articles
+function addCoolMeta(article) {
+  const metaDiv = document.createElement('div');
+  metaDiv.className = 'xcoolmeta';
+
+  // Style the meta div
+  metaDiv.style.position = 'absolute';
+  metaDiv.style.right = '-220px'; // Offset to the right
+  metaDiv.style.top = '20px';
+  metaDiv.style.width = '200px';
+  metaDiv.style.padding = '15px';
+  metaDiv.style.backgroundColor = 'rgba(43, 11, 63, 0.95)';
+  metaDiv.style.borderRadius = '10px';
+  metaDiv.style.boxShadow = '0 0 20px rgba(138, 43, 226, 0.3)';
+  metaDiv.style.backdropFilter = 'blur(5px)';
+  metaDiv.style.border = '1px solid rgba(138, 43, 226, 0.3)';
+  metaDiv.style.transition = 'all 0.3s ease';
+  metaDiv.style.opacity = '0';
+  metaDiv.style.transform = 'translateX(20px)';
+
+  // Create form
+  const form = document.createElement('form');
+  form.style.display = 'flex';
+  form.style.flexDirection = 'column';
+  form.style.gap = '10px';
+
+  // Create textarea
+  const textarea = document.createElement('textarea');
+  textarea.placeholder = 'Add your notes here...';
+  textarea.style.width = '100%';
+  textarea.style.height = '100px';
+  textarea.style.padding = '10px';
+  textarea.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+  textarea.style.border = '1px solid rgba(138, 43, 226, 0.3)';
+  textarea.style.borderRadius = '5px';
+  textarea.style.color = '#ffffff';
+  textarea.style.resize = 'none';
+  textarea.style.fontFamily = 'inherit';
+  textarea.style.fontSize = '14px';
+
+  // Create save button
+  const saveButton = document.createElement('button');
+  saveButton.textContent = 'Save Notes 💾';
+  saveButton.style.padding = '8px 15px';
+  saveButton.style.backgroundColor = 'rgba(138, 43, 226, 0.8)';
+  saveButton.style.color = '#ffffff';
+  saveButton.style.border = 'none';
+  saveButton.style.borderRadius = '5px';
+  saveButton.style.cursor = 'pointer';
+  saveButton.style.transition = 'all 0.3s ease';
+  saveButton.style.fontWeight = 'bold';
+  saveButton.style.boxShadow = '0 0 10px rgba(138, 43, 226, 0.3)';
+
+  // Add hover effect to save button
+  saveButton.addEventListener('mouseenter', () => {
+    saveButton.style.backgroundColor = 'rgba(138, 43, 226, 1)';
+    saveButton.style.boxShadow = '0 0 15px rgba(138, 43, 226, 0.5)';
+  });
+
+  saveButton.addEventListener('mouseleave', () => {
+    saveButton.style.backgroundColor = 'rgba(138, 43, 226, 0.8)';
+    saveButton.style.boxShadow = '0 0 10px rgba(138, 43, 226, 0.3)';
+  });
+
+  // Add form elements
+  form.appendChild(textarea);
+  form.appendChild(saveButton);
+  metaDiv.appendChild(form);
+
+  // Add hover effect to meta div
+  article.addEventListener('mouseenter', () => {
+    gsap.to(metaDiv, {
+      duration: 0.3,
+      opacity: 1,
+      x: 0,
+      ease: "power2.out"
+    });
+  });
+
+  article.addEventListener('mouseleave', () => {
+    gsap.to(metaDiv, {
+      duration: 0.3,
+      opacity: 0,
+      x: 20,
+      ease: "power2.in"
+    });
+  });
+
+  // Handle form submission
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const notes = textarea.value;
+    // Save notes to storage using article's unique identifier
+    const articleId = article.id || article.dataset.id || Math.random().toString(36).substr(2, 9);
+    chrome.storage.local.set({ [articleId]: notes }, () => {
+      // Show save confirmation
+      saveButton.textContent = 'Saved! ✨';
+      setTimeout(() => {
+        saveButton.textContent = 'Save Notes 💾';
+      }, 2000);
+    });
+  });
+
+  // Load saved notes
+  const articleId = article.id || article.dataset.id || Math.random().toString(36).substr(2, 9);
+  chrome.storage.local.get([articleId], (result) => {
+    if (result[articleId]) {
+      textarea.value = result[articleId];
+    }
+  });
+
+  // Make article position relative if it's not already
+  if (getComputedStyle(article).position === 'static') {
+    article.style.position = 'relative';
+  }
+
+  // Append meta div to article
+  article.appendChild(metaDiv);
+}
+
+// Function to initialize cool meta for all articles
+function initializeCoolMeta() {
+  // Select all articles (adjust selector based on your needs)
+  const articles = document.querySelectorAll('article, .article, [role="article"]');
+  articles.forEach(article => {
+    addCoolMeta(article);
+  });
+
+  // Create observer to handle dynamically added articles
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === 1) { // Element node
+          if (node.matches('article, .article, [role="article"]')) {
+            addCoolMeta(node);
+          }
+          // Check for articles within added nodes
+          const articles = node.querySelectorAll('article, .article, [role="article"]');
+          articles.forEach(article => addCoolMeta(article));
+        }
+      });
+    });
+  });
+
+  // Start observing
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+}
+
 // Initialize the UI components
 function initializeUI() {
   // createStyledDiv();
@@ -311,6 +464,7 @@ function initializeUI() {
 
   formDiv.appendChild(form);
   handleCustomStyleSubmission(form);
+  initializeCoolMeta();
 }
 
 // Run the initialization
