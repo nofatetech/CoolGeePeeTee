@@ -1,3 +1,23 @@
+/*
+ *  ██████╗
+ *  ██╔══██╗
+ *  ██████╔╝
+ *  ██╔══██╗
+ *  ██║  ██║
+ *  ╚═╝  ╚═╝
+ *
+ *  ███████╗
+ *  ██╔════╝
+ *  ███████╗
+ *  ╚════██║
+ *  ███████║
+ *  ╚══════╝
+ *
+ *  🎸 RADICAL 80s THEME 🎸
+ *  Neon colors, retro vibes, and radical gradients!
+ *  Time to get tubular with this totally awesome theme!
+ */
+
 :root {
   --background-color: #fc0;
   --font-family-main: 'Press Start 2P', cursive;
@@ -49,7 +69,7 @@ article {
   padding: 24px;
   margin: 24px auto;
   background: var(--article-background-gradient);
-  max-width: 800px;
+  max-width: 800px;git status
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
