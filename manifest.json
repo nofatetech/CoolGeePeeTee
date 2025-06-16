@@ -64,7 +64,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "styles_*.css",
+        "themes/*.css",
         "scripts/gsap/*",
         "images/*"
       ],
