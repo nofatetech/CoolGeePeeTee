@@ -18,7 +18,7 @@ newDiv.style.boxShadow = '0 4px 8px var(--article-shadow-color)';
 function createToggleButton() {
   const toggleButton = document.createElement('button');
   toggleButton.id = 'xtogglebutton';
-  toggleButton.textContent = 'Style It! 🎨';
+  toggleButton.textContent = 'Style It! 🎨✨💫';
   toggleButton.style.position = 'fixed';
   toggleButton.style.bottom = '20px';
   toggleButton.style.right = '20px';
@@ -29,10 +29,11 @@ function createToggleButton() {
   toggleButton.style.borderRadius = '10px';
   toggleButton.style.cursor = 'pointer';
   toggleButton.style.zIndex = '9999';
-  toggleButton.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4)';
-  toggleButton.style.color = 'white';
-  toggleButton.style.boxShadow = '0 0 20px rgba(0,0,0,0.2)';
+  toggleButton.style.background = 'linear-gradient(45deg, #2b0b3f, #8a2be2)';
+  toggleButton.style.color = '#ffffff';
+  toggleButton.style.boxShadow = '0 0 20px rgba(138, 43, 226, 0.4)';
   toggleButton.style.transition = 'all 0.3s ease';
+  toggleButton.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.5)';
 
   // Initial state
   toggleButton.style.opacity = '0';
@@ -54,34 +55,34 @@ function createToggleButton() {
   const attentionAnimation = gsap.timeline({ repeat: -1, repeatDelay: 2 })
     .to(toggleButton, {
       duration: 0.6,
-      scale: 7.1,
+      scale: 1.1,
       rotation: 5,
-      boxShadow: '0 0 30px rgba(255, 107, 107, 0.6)',
-      background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+      boxShadow: '0 0 30px rgba(138, 43, 226, 0.6)',
+      background: 'linear-gradient(45deg, #2b0b3f, #8a2be2)',
       ease: "power2.inOut"
     })
     .to(toggleButton, {
       duration: 0.6,
       scale: 1,
       rotation: -5,
-      boxShadow: '0 0 20px rgba(78, 205, 196, 0.6)',
-      background: 'linear-gradient(45deg, #4ecdc4, #ff6b6b)',
+      boxShadow: '0 0 20px rgba(43, 11, 63, 0.6)',
+      background: 'linear-gradient(45deg, #8a2be2, #2b0b3f)',
       ease: "power2.inOut"
     })
     .to(toggleButton, {
       duration: 0.6,
       scale: 1.1,
       rotation: 5,
-      boxShadow: '0 0 30px rgba(255, 107, 107, 0.6)',
-      background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+      boxShadow: '0 0 30px rgba(138, 43, 226, 0.6)',
+      background: 'linear-gradient(45deg, #2b0b3f, #8a2be2)',
       ease: "power2.inOut"
     })
     .to(toggleButton, {
       duration: 0.6,
       scale: 1,
       rotation: 0,
-      boxShadow: '0 0 20px rgba(0,0,0,0.2)',
-      background: 'linear-gradient(45deg, #4ecdc4, #ff6b6b)',
+      boxShadow: '0 0 20px rgba(43, 11, 63, 0.4)',
+      background: 'linear-gradient(45deg, #8a2be2, #2b0b3f)',
       ease: "power2.inOut"
     });
 
@@ -92,8 +93,8 @@ function createToggleButton() {
       duration: 0.4,
       scale: 1.2,
       rotation: 10,
-      boxShadow: '0 0 40px rgba(255, 107, 107, 0.8)',
-      background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+      boxShadow: '0 0 40px rgba(138, 43, 226, 0.8)',
+      background: 'linear-gradient(45deg, #2b0b3f, #8a2be2)',
       ease: "elastic.out(1, 0.5)"
     });
   });
@@ -103,8 +104,8 @@ function createToggleButton() {
       duration: 0.4,
       scale: 1,
       rotation: 0,
-      boxShadow: '0 0 20px rgba(0,0,0,0.2)',
-      background: 'linear-gradient(45deg, #4ecdc4, #ff6b6b)',
+      boxShadow: '0 0 20px rgba(43, 11, 63, 0.4)',
+      background: 'linear-gradient(45deg, #8a2be2, #2b0b3f)',
       ease: "power2.out",
       onComplete: () => {
         attentionAnimation.play();
@@ -118,14 +119,14 @@ function createToggleButton() {
       duration: 0.2,
       scale: 0.9,
       rotation: -15,
-      boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+      boxShadow: '0 0 10px rgba(43, 11, 63, 0.2)',
       ease: "power2.in",
       onComplete: () => {
         gsap.to(toggleButton, {
           duration: 0.4,
           scale: 1,
           rotation: 0,
-          boxShadow: '0 0 20px rgba(0,0,0,0.2)',
+          boxShadow: '0 0 20px rgba(43, 11, 63, 0.4)',
           ease: "elastic.out(1, 0.5)"
         });
       }
