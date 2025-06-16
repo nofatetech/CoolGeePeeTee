@@ -24,6 +24,11 @@ Transform your AI chat experience with style! CoolGeePeeTee is your personal cha
 3. Choose a theme or write your own CSS
 4. Enjoy your newly styled chat!
 
+## 🌐 Visit Our Website
+
+For more themes, community styles, and updates, visit:
+[nofate.net/coolgeepeetee](https://nofate.net/coolgeepeetee)
+
 ## 🎨 Available Themes
 
 - 80s Style 🎸 - Neon colors and retro vibes
