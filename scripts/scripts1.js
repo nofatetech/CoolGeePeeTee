@@ -1,5 +1,3 @@
-
-
 console.log('Hello 1!');
 
 // Function to create and style a new div
@@ -20,7 +18,7 @@ function createStyledDiv() {
 function createToggleButton() {
   const toggleButton = document.createElement('button');
   toggleButton.id = 'xtogglebutton';
-  toggleButton.textContent = '🎨✨💫 Style It!';
+  toggleButton.textContent = '🎨✨💫 Style It! 🎨✨💫';
   toggleButton.style.position = 'fixed';
   toggleButton.style.bottom = '20px';
   toggleButton.style.right = '20px';
@@ -248,14 +246,27 @@ function removeExistingCustomStyles() {
   existingStyleElements.forEach(element => element.remove());
 }
 
-// Function to create and attach cool meta div to articles
-function addCoolMeta(article) {
+// Function to get message elements based on platform
+function getMessageElements() {
+  const hostname = window.location.hostname;
+
+  if (hostname.includes('t3.chat')) {
+    // T3.chat format: div[role="article"]
+    return document.querySelectorAll('div[role="article"]');
+  } else {
+    // ChatGPT format: article elements
+    return document.querySelectorAll('article');
+  }
+}
+
+// Function to create and attach cool meta div to messages
+function addCoolMeta(messageElement) {
   const metaDiv = document.createElement('div');
   metaDiv.className = 'xcoolmeta';
 
   // Style the meta div
   metaDiv.style.position = 'absolute';
-  metaDiv.style.right = '-220px'; // Offset to the right
+  metaDiv.style.right = '-220px';
   metaDiv.style.top = '20px';
   metaDiv.style.width = '200px';
   metaDiv.style.padding = '15px';
@@ -267,6 +278,7 @@ function addCoolMeta(article) {
   metaDiv.style.transition = 'all 0.3s ease';
   metaDiv.style.opacity = '0';
   metaDiv.style.transform = 'translateX(20px)';
+  metaDiv.style.zIndex = '1000';
 
   // Create form
   const form = document.createElement('form');
@@ -318,7 +330,7 @@ function addCoolMeta(article) {
   metaDiv.appendChild(form);
 
   // Add hover effect to meta div
-  article.addEventListener('mouseenter', () => {
+  messageElement.addEventListener('mouseenter', () => {
     gsap.to(metaDiv, {
       duration: 0.3,
       opacity: 1,
@@ -327,7 +339,7 @@ function addCoolMeta(article) {
     });
   });
 
-  article.addEventListener('mouseleave', () => {
+  messageElement.addEventListener('mouseleave', () => {
     gsap.to(metaDiv, {
       duration: 0.3,
       opacity: 0,
@@ -340,9 +352,9 @@ function addCoolMeta(article) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const notes = textarea.value;
-    // Save notes to storage using article's unique identifier
-    const articleId = article.id || article.dataset.id || Math.random().toString(36).substr(2, 9);
-    chrome.storage.local.set({ [articleId]: notes }, () => {
+    // Save notes to storage using message's unique identifier
+    const messageId = messageElement.id || messageElement.dataset.id || Math.random().toString(36).substr(2, 9);
+    chrome.storage.local.set({ [messageId]: notes }, () => {
       // Show save confirmation
       saveButton.textContent = 'Saved! ✨';
       setTimeout(() => {
@@ -352,41 +364,41 @@ function addCoolMeta(article) {
   });
 
   // Load saved notes
-  const articleId = article.id || article.dataset.id || Math.random().toString(36).substr(2, 9);
-  chrome.storage.local.get([articleId], (result) => {
-    if (result[articleId]) {
-      textarea.value = result[articleId];
+  const messageId = messageElement.id || messageElement.dataset.id || Math.random().toString(36).substr(2, 9);
+  chrome.storage.local.get([messageId], (result) => {
+    if (result[messageId]) {
+      textarea.value = result[messageId];
     }
   });
 
-  // Make article position relative if it's not already
-  if (getComputedStyle(article).position === 'static') {
-    article.style.position = 'relative';
+  // Make message element position relative if it's not already
+  if (getComputedStyle(messageElement).position === 'static') {
+    messageElement.style.position = 'relative';
   }
 
-  // Append meta div to article
-  article.appendChild(metaDiv);
+  // Append meta div to message element
+  messageElement.appendChild(metaDiv);
 }
 
-// Function to initialize cool meta for all articles
+// Function to initialize cool meta for all messages
 function initializeCoolMeta() {
-  // Select all articles (adjust selector based on your needs)
-  const articles = document.querySelectorAll('article, .article, [role="article"]');
-  articles.forEach(article => {
-    addCoolMeta(article);
+  // Get message elements based on platform
+  const messageElements = getMessageElements();
+  messageElements.forEach(message => {
+    addCoolMeta(message);
   });
 
-  // Create observer to handle dynamically added articles
+  // Create observer to handle dynamically added messages
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       mutation.addedNodes.forEach((node) => {
         if (node.nodeType === 1) { // Element node
-          if (node.matches('article, .article, [role="article"]')) {
+          if (node.matches('article, div[role="article"]')) {
             addCoolMeta(node);
           }
-          // Check for articles within added nodes
-          const articles = node.querySelectorAll('article, .article, [role="article"]');
-          articles.forEach(article => addCoolMeta(article));
+          // Check for messages within added nodes
+          const messages = node.querySelectorAll('article, div[role="article"]');
+          messages.forEach(message => addCoolMeta(message));
         }
       });
     });
